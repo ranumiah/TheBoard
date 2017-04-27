@@ -1,0 +1,9 @@
+{
+  "name": "the-board",
+  "version": "0.0.0",
+  "description": "TheBoard",
+  "main": "server.js",
+  "author": {
+    "name": "ranu.miah"
+  }
+}
