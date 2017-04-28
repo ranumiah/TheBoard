@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<head>
+    <!-- @ ==> This is the Razor syntax-->
+    <!-- @model ==> The object that is being sent into the view-->
+    <title>@model.title</title>
+</head>
+<body>
+    <div>@html.block("body")</div>
+</body>
+</html>

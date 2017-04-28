@@ -146,4 +146,17 @@ Node Pacakge Manager has the notion of 3 types od dependencies:
 
 Also when bringing in dependency modules it is possible those modules can also be dependent on other Node Module for example `npm install express`
 
+*There is no build in **Node** of taking that JavaScript and building something with it, it's simply the matter of reading the package.json that's going to be used when you start up your node project.**
 
+##### View Engine
+
+It is used to render a view instead using magice string of html.
+
+**Jade**
+>is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node and browsers.
+
+**EJS***
+>"E" is for "effective." EJS is a simple templating language that lets you generate HTML markup with plain JavaScript. No religiousness about how to organize things. No reinvention of iteration and control-flow. It's just plain JavaScript.
+
+**Vash**
+>Vash is a template engine that offers a swift flow between code and content using Razor Syntax
