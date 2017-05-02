@@ -28,6 +28,16 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="controllers\homeController.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="controllers\index.js" />
+    <Compile Include="data\index.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="data\seedData.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -41,6 +51,8 @@
     <Content Include="views\vash\index.vash" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="controllers\" />
+    <Folder Include="data\" />
     <Folder Include="views\" />
     <Folder Include="views\jade\" />
     <Folder Include="views\ejs\" />

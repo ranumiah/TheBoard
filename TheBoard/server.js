@@ -1,6 +1,7 @@
 var http = require('http');
 var express = require("express");
 var app = express(); // This will return a singleton object that represent our web application.
+var controllers = require("./controllers"); // this gives access to all the controllers in that folder as long as there's an index.js file in the folder
 //var ejsEngine = require("ejs-locals");
 
 // Setup the View Engine
@@ -16,16 +17,19 @@ app.set("view engine", "vash");
 //app.set("view engine", "jade");
 
 
-// This is like MVC action methods in the Controller class
-app.get("/", // This is what URL's is being hit
-    // Here is the code to run when the above url is hit
-    function(req, res) {
-        //res.send("<html><body><h1>Express</h1></body></html>"); // Use View Engine to render
+//// This is like MVC action methods in the Controller class
+//app.get("/", // This is what URL's is being hit
+//    // Here is the code to run when the above url is hit
+//    function(req, res) {
+//        //res.send("<html><body><h1>Express</h1></body></html>"); // Use View Engine to render
 
-        //res.render("jade/index", { title: "Express + Jade" });
-        //res.render("ejs/index", { title: "Express + EJS" });
-        res.render("vash/index", { title: "Express + Vash" });
-    });
+//        //res.render("jade/index", { title: "Express + Jade" });
+//        //res.render("ejs/index", { title: "Express + EJS" });
+//        res.render("vash/index", { title: "Express + Vash" });
+//    });
+
+// Map the routes
+controllers.init(app);
 
 app.get("/api/users",
     function (req, res) {
