@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="server.js" />
     <Content Include="package.json" />
+    <Content Include="public\css\site.css" />
     <Content Include="README.md" />
     <Content Include="views\ejs\layout.ejs" />
     <Content Include="views\ejs\index.ejs" />
@@ -53,6 +54,8 @@
   <ItemGroup>
     <Folder Include="controllers\" />
     <Folder Include="data\" />
+    <Folder Include="public\" />
+    <Folder Include="public\css\" />
     <Folder Include="views\" />
     <Folder Include="views\jade\" />
     <Folder Include="views\ejs\" />

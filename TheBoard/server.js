@@ -28,6 +28,9 @@ app.set("view engine", "vash");
 //        res.render("vash/index", { title: "Express + Vash" });
 //    });
 
+// set the public static resource folder
+app.use(express.static(__dirname + "/public"));
+
 // Map the routes
 controllers.init(app);
 

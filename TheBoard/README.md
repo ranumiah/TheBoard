@@ -160,3 +160,8 @@ It is used to render a view instead using magice string of html.
 
 **Vash**
 >Vash is a template engine that offers a swift flow between code and content using Razor Syntax
+
+
+#### Node Keywords
+
+**__dirname** is a global object that contains the name of the directory that the executing script resides
