@@ -211,3 +211,16 @@ This will install version 1.6.0 of underscore package
 
 Bower has a file called **.bowerrc**.  This is used to configure itself and list of all the options can be found [here](https://github.com/bower/spec/blob/master/config.md)
 
+### GruntJS
+
+Grunt is basically a build / task manager written on top of NodeJS.
+
+The way that Grunt works is it looks for a file in the root of the folder it's being run in called gruntfile.js. This isn't a file that's used by Node at all during runtime, it's purely a development asset.
+
+#### Typicall Use Cases
+
+* Use nodemon to monitor change in server code to automatically restart Node
+* run tests
+* minimize CSS & Javascript
+* run JSLint or HInt
+* etc

@@ -38,6 +38,9 @@
     <Compile Include="data\seedData.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="gruntfile.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="server.js" />
     <Content Include=".bowerrc">
       <SubType>Code</SubType>
