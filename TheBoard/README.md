@@ -108,19 +108,37 @@ Since the V8 uses the ECMAScript 6 as the standard.
 * You write TypeScript or CoffeeScript then the transpiler transforms it into ES5 JavaScript.
 
 ### NPM
+
 > `npm install underscore`
 
 This will install underscore Package that can be found at [npmjs](https://www.npmjs.com/)
 
 It creates a node_modules like nuget thus it is something that is generally ommited from source control.
 
+> `npm install underscore -g`
+
+This will install underscore global on the machine
+
 > `npm install underscore --save`
 
-This will save it as a dependancy in Package.json
+This will save it as a dependancy in Package.json "dependencies": {}
+
+> `npm install underscore --save-dev`
+
+This will save it as a dependancy in Package.json under "devDependencies": {}
+This means that these pacakages are only required during development and not to be use during production release
+
+> `npm uninstall underscore --save-dev`
+
+Not only will this remove the pacakge it will also update the Package.json as well
 
 > `npm install`
 
 This will install everything inside Package.json going through the whole dependency tree.
+
+> `npm list --depth=0 -g`
+
+This will show you all the packaged installed by *NPM* on your machine and if you take -g it will show all the packaged on the project.  The *--depeth=0* only shows the pacakge name however if you wish to see all the pacakges as well as all dependencies on those pacakages then taking that off will show you a massive tree structure instead of a single line list.
 
 ### Dependency Management
 
@@ -165,3 +183,31 @@ It is used to render a view instead using magice string of html.
 #### Node Keywords
 
 **__dirname** is a global object that contains the name of the directory that the executing script resides
+
+
+### Bower
+
+Bower is also dependency manager like NPM. Bower can be used for any front-end development to manage front-end assets (HTML, CSS & JS) - regardless of the technology used by the back-end. In other words, Bower can, and is, used with RoR (Ruby on Rails), PHP, J2EE, etc. 
+
+NPM, on the other hand, is a package manager specific to the node.js back-end environment.
+
+#### How to install Bower
+> `NPM Install bower -g`
+
+As you can see we need NPM to install bower but once that is install we can use power to install front-end packages like
+
+It also creates a bower_components folder where all the packages downloaded and there's bower.json listing all the packages that bower installed like NPM.
+
+#### How to use Bower
+> `bower install underscore`
+
+This will install underscore using bower.
+
+>`bower install underscore#1.6.0`
+
+This will install version 1.6.0 of underscore package
+
+#### How to Configure Bower
+
+Bower has a file called **.bowerrc**.  This is used to configure itself and list of all the options can be found [here](https://github.com/bower/spec/blob/master/config.md)
+
