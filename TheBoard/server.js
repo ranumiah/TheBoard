@@ -40,6 +40,41 @@ app.get("/api/users",
         res.send({name:"Foo", isValid: "true", group: "Admin"});
     });
 
+app.get('/api/sql', function (req, res) {
+
+    var sql = require("mssql");
+
+    sql.close();
+
+    // config for your database
+    var config = {
+        user: 'nodeUser',
+        password: 'mypassword',
+        server: 'DEVWRKSTN00423',
+        database: 'Northwind',
+        port: 1433
+    };
+
+    // connect to your database
+    sql.connect(config, function (err) {
+
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+
+        // query to the database and get the records
+        request.query("SELECT * FROM Customers WHERE CustomerID = 'ALFKI'", function (err, recordset) {
+
+            if (err) console.log(err);
+
+            // send records as a response
+            res.send(recordset);
+
+        });
+    });
+});
+
 // Create a Web Server using EXPRESS
 var server = http.createServer(app);
 

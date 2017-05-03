@@ -224,3 +224,82 @@ The way that Grunt works is it looks for a file in the root of the folder it's b
 * minimize CSS & Javascript
 * run JSLint or HInt
 * etc
+
+### Accesing Data with Node.js
+
+#### Drivers for Relational DBs
+
+* massive-js
+  * MySQL, PostgreSQL
+* msnodesql
+  * Native tds driver, but difficult to build on Windows
+* tedious
+  * Pure JavaScript SQL Server but limited functionality
+* edge
+  * ScriptCS and Node.js interop (to call any .NET code)
+* mssql
+  * Microsoft SQL Server client for Node.js
+
+#### Pre-requisite
+
+##### Enable SQL Server
+
+>In Sql Server Configuration Manager Ensure Following Are Running/Enabled:
+>* SQL Server Services   ==> SQL Server (MSSQLSERVER)    ==> Running
+>* SQL Server Network Configuration   ==> TCP/IP    ==> Enabled
+
+##### Create a User
+
+>Open SQL Server Management Stduio and connect to the database server as a sysadmin.
+
+>Right-click on *Database* and select *New Database*. Enter the name of your database and click OK to create the database.
+
+>Right click on *Security* in the left pane, and select *New*, then *Login*.
+
+>Enter the desired user name, and select *SQL Authentication*, then enter the desired user password. Ensure to uncheck the *Enforce password expiration* option.
+
+>Select your new database as the Default database, and click on User Mapping on the left side. Click the check box next to your database, and click the check box next to *db_owner*.
+
+>Lastly, click *OK* to create the login and database user.
+
+#### Example
+
+`npm install mssql`
+
+```Javascript
+app.get('/api/sql', function (req, res) {
+
+    var sql = require("mssql");
+
+    sql.close();
+
+    // config for your database
+    var config = {
+        user: 'userName',
+        password: 'myPassword',
+        server: 'serverAddress',
+        database: 'Northwind',
+        // Default port must specify when Named Instance is not set
+        port: 1433
+    };
+
+    // connect to your database
+    sql.connect(config, function (err) {
+
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+
+        // query to the database and get the records
+        request.query("SELECT * FROM Customers WHERE CustomerID = 'ALFKI'", function (err, recordset) {
+
+            if (err) console.log(err);
+
+            // send records as a response
+            res.send(recordset);
+
+        });
+    });
+});
+```
