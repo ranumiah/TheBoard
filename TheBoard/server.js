@@ -28,6 +28,10 @@ app.set("view engine", "vash");
 //        res.render("vash/index", { title: "Express + Vash" });
 //    });
 
+
+// Opt into Services
+app.use(express.urlencoded());
+
 // set the public static resource folder
 app.use(express.static(__dirname + "/public"));
 

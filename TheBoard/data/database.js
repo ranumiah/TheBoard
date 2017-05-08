@@ -2,7 +2,7 @@
 (function (database) {
 
     var mongodb = require("mongodb");
-    var mongoUrl = "mongodb://localhost:27017/theBoard";
+    var mongoUrl = "mongodb://localhost:27017/theBoard"; // theBoard is the database name
     var theDb = null;
 
     database.getDb = function (next) {
@@ -13,7 +13,8 @@
                     next(err, null);
                 } else {
                     theDb = {
-                        db: db
+                        db: db,
+                        notes: db.collection("notes") // this collection is like a table
                     };
                     next(null, theDb);
                 }
