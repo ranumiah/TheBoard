@@ -2,6 +2,9 @@ var http = require('http');
 var express = require("express");
 var app = express(); // This will return a singleton object that represent our web application.
 var controllers = require("./controllers"); // this gives access to all the controllers in that folder as long as there's an index.js file in the folder
+var flash = require("connect-flash");
+
+
 //var ejsEngine = require("ejs-locals");
 
 // Setup the View Engine
@@ -31,6 +34,10 @@ app.set("view engine", "vash");
 
 // Opt into Services
 app.use(express.urlencoded());
+app.use(express.cookieParser()); // All 3 needs to be Opt-In in this order, to be able to use Flash
+app.use(express.session({ secret: "MagicSesioon" })); // To use Session we need Cookie Parser
+app.use(flash()); // To use Flash we need to use Session
+
 
 // set the public static resource folder
 app.use(express.static(__dirname + "/public"));
