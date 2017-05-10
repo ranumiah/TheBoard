@@ -1,9 +1,11 @@
-﻿(function (data) {
+﻿// data.<property_name/method_name> =
+// all of those are exposing either a method or property to whoever has access to data object
+(function (data) {
 
     var seedData = require("./seedData");
     var database = require("./database");
 
-    data.getNoteCategories = function(next) {
+    data.getNoteCategories = function (next) {
 
         next(null, seedData.initialNotes);
     };
@@ -56,6 +58,18 @@
         });
     };
 
+    data.getNotes = function (categoryName, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err);
+            } else {
+                // This is case sensitive
+                db.notes.findOne({ name: categoryName }, next);
+            }
+        });
+    };
+
+    // Method Delcared
     function seedDatabase() {
         database.getDb(function (err, db) {
             if (err) {
@@ -82,6 +96,7 @@
         });
     }
 
+    // Method excuted
     seedDatabase();
 
 })(module.exports);

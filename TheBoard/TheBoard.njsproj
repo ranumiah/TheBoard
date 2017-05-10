@@ -32,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="controllers\index.js" />
+    <Compile Include="controllers\notesController.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="data\database.js">
       <SubType>Code</SubType>
     </Compile>
