@@ -34,6 +34,7 @@ app.set("view engine", "vash");
 
 // Opt into Services
 app.use(express.urlencoded());
+app.use(express.json());
 app.use(express.cookieParser()); // All 3 needs to be Opt-In in this order, to be able to use Flash
 app.use(express.session({ secret: "MagicSesioon" })); // To use Session we need Cookie Parser
 app.use(flash()); // To use Flash we need to use Session
@@ -48,7 +49,7 @@ controllers.init(app);
 app.get("/api/users",
     function (req, res) {
         res.set({ "Content-Type": "application/json" });
-        res.send({name:"Foo", isValid: "true", group: "Admin"});
+        res.send({ name: "Foo", isValid: "true", group: "Admin" });
     });
 
 app.get('/api/sql', function (req, res) {
