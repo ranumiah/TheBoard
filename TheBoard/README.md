@@ -115,6 +115,10 @@ This will install underscore Package that can be found at [npmjs](https://www.np
 
 It creates a node_modules like nuget thus it is something that is generally ommited from source control.
 
+>`npm install underscore@1.6.0`
+
+This will install the specific version of the pacakge
+
 > `npm install underscore -g`
 
 This will install underscore global on the machine
@@ -302,4 +306,97 @@ app.get('/api/sql', function (req, res) {
         });
     });
 });
+```
+
+#### NoSql Data Stores Differences To Relational
+
+* Document or data strcuture storage
+* Hierarchies not relational
+* Built to be run in parallel (e.g. Sharding)
+* Simple to deploy (usually no installer)
+* Transactions support too
+
+
+### MongoDB
+
+MongoDB is a cross-platform, document oriented database that provides, high performance, high availability, and easy horizontal scalability. MongoDB works on concept of collection and document.
+
+##### Database
+Database is a physical container for collections. Each database gets its own set of files on the file system. A single MongoDB server typically has multiple databases.
+
+##### Collection
+Collection is a group of MongoDB documents. It is the equivalent of an RDBMS table. A collection exists within a single database. Collections do not enforce a schema. Documents within a collection can have different fields. Typically, all documents in a collection are of similar or related purpose.
+
+##### Document
+A document is a set of key-value pairs. Documents have dynamic schema. Dynamic schema means that documents in the same collection do not need to have the same set of fields or structure, and common fields in a collection's documents may hold different types of data.
+
+###### Comparison Table
+
+| RDBMS      | MongoDB          |
+|:----------:|:----------------:|
+| Database   | Database         |
+| Table      | Collection       |
+| Row        | Document         |
+| Column     | Field            |
+| Table Join | Embedded Document|
+| Primary Key| _id              |
+
+**_id** is a 12 bytes hexadecimal number which assures the uniqueness of every document. These 12 bytes first 4 bytes for the current timestamp, next 3 bytes for machine id, next 2 bytes for process id of MongoDB server and remaining 3 bytes are simple incremental VALUE.
+
+**MongoDB Environment** is simply self-contain of executables.
+
+**MongoDB Server Start**
+
+    `mongod.exe -dbpath ..\..\..\Data --rest`
+
+This will then allow you to access the DB from web browser.
+
+The path for the admin console is: http://localhost:28017/
+
+The default server path is http://localhost:27017/
+
+**MongoDB Shell**
+
+    `mongo.exe`
+
+| Command         | Function                                      |
+|:----------------|:----------------------------------------------|
+| show dbs        | Shows the names of the available databases    |
+| show collections| Shows the collections in the current databases|
+| show users      | Shows the users in the current databases      |
+| use <db_name>   | Sets the current datatbase to <db_name>       |
+
+**Backup Database**
+
+    `mongodump.exe --db database_name --collection collection_name`
+
+**Restore Database From Backup**
+
+    `mongorestore.exe --db database_name path_to_bson_file`
+
+#### Example
+
+```Javascript
+var mongodb = require("mongodb");
+var mongoUrl = "mongodb://localhost:27017/theBoard"; // theBoard is the database name
+var theDb = null;
+
+database.getDb = function (next) {
+    if (!theDb) {
+        // connect to the database
+        mongodb.MongoClient.connect(mongoUrl, function (err, db) {
+            if (err) {
+                next(err, null);
+            } else {
+                theDb = {
+                    db: db,
+                    notes: db.collection("notes") // this collection is like a table
+                };
+                next(null, theDb);
+            }
+        });
+    } else {
+        next(null, theDb);
+    }
+}
 ```
