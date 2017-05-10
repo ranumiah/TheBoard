@@ -69,6 +69,18 @@
         });
     };
 
+    // This actually create a new object inside of an existing object    
+    data.addNote = function (categoryName, noteToInsert, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err);
+            } else {
+                // Therefore we do an update and not the logically Insert
+                db.notes.update({ name: categoryName }, { $push: { notes: noteToInsert } }, next);
+            }
+        });
+    };
+
     // Method Delcared
     function seedDatabase() {
         database.getDb(function (err, db) {

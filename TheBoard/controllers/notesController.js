@@ -22,6 +22,7 @@
             });
         });
 
+        // Request Body Example: {"note":"A fictional note", "color":"blue"}
         app.post("/api/notes/:categoryName", function (req, res) {
 
             var categoryName = req.params.categoryName;
@@ -31,6 +32,15 @@
                 color: req.body.color,
                 author: "Shawn Wildermuth"
             };
+
+            data.addNote(categoryName, noteToInsert, function (err) {
+                if (err) {
+                    res.send(400, "Failed to add note to data store");
+                } else {
+                    res.set("Content-Type", "application/json");
+                    res.send(201, noteToInsert);
+                }
+            });
 
         });
     };
